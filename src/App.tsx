@@ -1,26 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState} from 'react';
 import './App.css';
+import {Accordion} from './components/Accordion/Accordion';
+import {Rating} from './components/Rating/Rating';
+import {OnOff} from './components/OnOff/OnOff';
+import {Test} from './01/test';
+
+export type RatingValueType = 0 | 1 | 2 | 3 | 4 | 5
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+    const [collapsed, setCollapsed] = useState<boolean>(false);
+    const [ratingValue, setRatingValue] = useState<RatingValueType>(0);
+    const [on, setOn] = useState<boolean>(false);
+
+    const setListCollapsed = ()=>{
+        setCollapsed(!collapsed)
+    };
+
+
+    return (
+        <div className="App">
+            <Accordion title={'Menu'} onChange={setListCollapsed} collapsed = {collapsed} color={'green'}/>
+            <Rating value={ratingValue}  setRatingValue={setRatingValue}/>
+            <OnOff setOn = {setOn} on = {on}/>
+            <Test/>
+        </div>
+    );
 }
 
 export default App;
