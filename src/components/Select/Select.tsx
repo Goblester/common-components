@@ -5,23 +5,24 @@ import {ChangeValueOnKeyPress} from '../../common/commonFunc';
 type ItemType = {
     title: string,
     value: any
+    [key: string]: any
 }
 
 export type SelectPropsType = {
-    value: any,
+    value?: any,
     items: Array<ItemType>,
-    onChange: (value: any) => void
+    onChange?: (value: any) => void
 }
 
-export const Select = React.memo(SelectSecret);
 
-export function SelectSecret({value, items, ...restProps}: SelectPropsType) {
+export const Select =  React.memo(function ({value, items, ...restProps}: SelectPropsType) {
     const [editMode, setEditMode] = useState<boolean>(false);
-    const [hoveredItemValue, setHoveredItemValue] = useState<any>(value);
+    const [hoveredItemValue, setHoveredItemValue] = useState<any>(value?value:items[0].value);
     useEffect(() => {
         setHoveredItemValue(value);
     }, [value]);
-    const curItem = items.find(i => i.value === value);
+    const trueValue = value?value:hoveredItemValue;
+    const curItem = items.find(i => i.value === trueValue);
     const onSetEditModeClick = () => {
         setEditMode(prevState => !prevState)
     }
@@ -39,7 +40,7 @@ export function SelectSecret({value, items, ...restProps}: SelectPropsType) {
         switch (e.key) {
             case 'Enter':
                 onSetEditModeClick();
-                restProps.onChange(hoveredItemValue);
+                restProps.onChange&&restProps.onChange(hoveredItemValue);
                 return;
             case  'Escape':
                 setEditMode(false);
@@ -52,12 +53,11 @@ export function SelectSecret({value, items, ...restProps}: SelectPropsType) {
                 return;
 
         }
-        console.log(e.key);
-
     }
     const mappedItems = items.map((i, ind) => {
             const changeCurItem = () => {
-                restProps.onChange(i.value);
+                restProps.onChange?restProps.onChange(i.value):
+                setHoveredItemValue(i.value);
                 onSetEditModeClick();
             }
 
@@ -92,4 +92,4 @@ export function SelectSecret({value, items, ...restProps}: SelectPropsType) {
 
         </div>
     )
-}
+})
