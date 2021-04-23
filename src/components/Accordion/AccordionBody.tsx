@@ -1,6 +1,9 @@
 import React from "react";
 
-export function AccordionBody() {
+export const AccordionBody = React.memo(AccordionBodySecret);
+
+
+function AccordionBodySecret() {
     return (
         <ul>
             <li>one</li>

@@ -14,4 +14,4 @@ function AccordionTitle(props: AccordionTitlePropsType) {
     )
 }
 
-export default AccordionTitle;
+export default React.memo(AccordionTitle);

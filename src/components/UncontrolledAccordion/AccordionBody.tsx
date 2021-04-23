@@ -10,4 +10,4 @@ function AccordionBody() {
     )
 }
 
-export default AccordionBody;
+export default React.memo(AccordionBody);

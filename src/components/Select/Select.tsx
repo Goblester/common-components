@@ -1,4 +1,4 @@
-import {KeyboardEvent, useEffect, useState} from 'react';
+import React,{KeyboardEvent, useEffect, useState} from 'react';
 import style from './Select.module.css'
 import {ChangeValueOnKeyPress} from '../../common/commonFunc';
 
@@ -13,7 +13,9 @@ export type SelectPropsType = {
     onChange: (value: any) => void
 }
 
-export function Select({value, items, ...restProps}: SelectPropsType) {
+export const Select = React.memo(SelectSecret);
+
+export function SelectSecret({value, items, ...restProps}: SelectPropsType) {
     const [editMode, setEditMode] = useState<boolean>(false);
     const [hoveredItemValue, setHoveredItemValue] = useState<any>(value);
     useEffect(() => {

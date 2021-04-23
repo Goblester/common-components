@@ -2,7 +2,9 @@ import React, {ChangeEvent, createRef, MouseEvent, useRef, useState} from 'react
 
 export type UncontrolledInputPropsType = {}
 
-export const UncontrolledInput = (props: UncontrolledInputPropsType) => {
+export const UncontrolledInput = React.memo(UncontrolledInputSecret)
+
+function UncontrolledInputSecret(props: UncontrolledInputPropsType){
     const [value, setValue] = useState<string>('');
 
     const inputRef = useRef<HTMLInputElement>(null);

@@ -5,6 +5,8 @@ type StarPropsType = {
     setRating: ()=>void
 }
 
+
+
 function Star(props: StarPropsType) {
 
     return (
@@ -14,4 +16,4 @@ function Star(props: StarPropsType) {
     )
 }
 
-export default Star;
+export default React.memo(Star);

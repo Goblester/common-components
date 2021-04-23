@@ -21,7 +21,9 @@ export type AccordionPropsType = {
     color: string
 }
 
-export function Accordion({collapsed, ...props}: AccordionPropsType) {
+export const Accordion = React.memo(AccordionSecret)
+
+function AccordionSecret({collapsed, ...props}: AccordionPropsType) {
     return (
         <div>
             <AccordionTitle {...props}/>

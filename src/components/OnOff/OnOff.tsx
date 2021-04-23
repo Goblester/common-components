@@ -12,7 +12,9 @@ export type OnOffPropsType = {
     setOn: (on:boolean) => void
 }
 
-export function OnOff(props: OnOffPropsType) {
+export const OnOff = React.memo(OnOffSecret);
+
+function OnOffSecret(props: OnOffPropsType) {
 
     console.log('on: ' + props.on);
 

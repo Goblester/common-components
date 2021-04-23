@@ -6,7 +6,9 @@ type AccordionTitlePropsType = {
     color: string
 }
 
-export function AccordionTitle({title, color, ...props}: AccordionTitlePropsType) {
+export const AccordionTitle = React.memo(AccordionTitleSecret);
+
+function AccordionTitleSecret({title, color, ...props}: AccordionTitlePropsType) {
 
     const onClickHandler = () => {
         props.onChange()

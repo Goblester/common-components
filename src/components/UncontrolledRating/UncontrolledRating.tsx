@@ -8,7 +8,9 @@ export type RatingPropsType = {
     onClick: (value: RatingValueType)=>void
 }
 
-export function UncontrolledRating({defaultValue, ...props}: RatingPropsType) {
+export const UncontrolledRating = React.memo(UncontrolledRatingSecret);
+
+function UncontrolledRatingSecret({defaultValue, ...props}: RatingPropsType) {
     const [value, setValue] = useState<RatingValueType>(defaultValue?defaultValue:0);
 
     const setRatingOne = () => {

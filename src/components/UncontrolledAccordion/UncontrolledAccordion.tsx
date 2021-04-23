@@ -9,7 +9,9 @@ export type AccordionPropsType = {
     onClick: (collapsed: boolean) => void
 }
 
-export function UncontrolledAccordion({title, defaultCollapsed, ...props}: AccordionPropsType) {
+export const UncontrolledAccordion = React.memo(UncontrolledAccordionSecret);
+
+function UncontrolledAccordionSecret({title, defaultCollapsed, ...props}: AccordionPropsType) {
 
     const [state, dispatch] = useReducer(unAccordionReducer, {collapsed: false})
 

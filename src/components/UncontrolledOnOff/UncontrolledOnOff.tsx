@@ -5,7 +5,9 @@ export type OnOffPropsType = {
     onClick: (on:boolean)=>void
 }
 
-export function UncontrolledOnOff({defaultOn, onClick, ...props}: OnOffPropsType) {
+export const UncontrolledOnOff = React.memo(UncontrolledOnOffSecret)
+
+function UncontrolledOnOffSecret({defaultOn, onClick, ...props}: OnOffPropsType) {
 
     console.log('UncontrolledOnOff is rendering');
 
