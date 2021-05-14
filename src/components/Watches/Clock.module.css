@@ -1,0 +1,30 @@
+.clock{
+    position: relative;
+    height: 200px;
+    width: 200px;
+    background-color: yellow;
+    border-radius: 50%;
+}
+
+.arrow{
+    position: absolute;
+    background-color: black;
+    height: 100px;
+    width: 5px;
+    transform: translate(-50%, -50%);
+}
+
+.secondArrow{
+    height: 100px;
+    width: 2px;
+}
+
+.minuteArrow{
+    height: 90px;
+    width: 3px;
+}
+
+.hourArrow{
+    height: 80px;
+    width: 5px;
+}
