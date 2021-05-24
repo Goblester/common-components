@@ -1,7 +1,13 @@
-import {useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
+import { AnalogClock } from './AnalogClock';
+import {DigitalClock} from './DigitalClock';
 import styles from './Clock.module.css';
 
-export function Clock() {
+export type ClockPropsType = {
+    mode?: 'digital' | 'analog'
+}
+
+export const Clock = React.memo(({mode}:ClockPropsType)=> {
     const [date, setDate] = useState<Date>(new Date())
 
     useEffect(() => {
@@ -14,33 +20,20 @@ export function Clock() {
             clearInterval(intervalID)
         }
     }, [date]);
-    const clockStyle = {}
-    const getCoordinate = (time: number, width: number)=>{
-        const deg = time*6;
-        const sin = Math.sin(Math.PI*deg/180);
-        const cos = Math.cos(Math.PI*deg/180);
-        const x = 100+width/2*sin;
-        const y = 100-width/2*cos;
-        return {
-            transform: `translate(-50%, -50%) rotate(${deg}deg)`,
-            top: y,
-            left: x
-        }
+    let view;
+    switch (mode){
+        case 'analog':
+            view = <AnalogClock date={date}/>
+            break
+        case 'digital':
+        default:
+            view = <DigitalClock date={date}/>
     }
-    const hourArrow = getCoordinate(date.getHours(),80);
-    const minuteArrow = getCoordinate(date.getMinutes(),90);
-    const secondArrow = getCoordinate(date.getSeconds(),100);
+
     return (
-        <div>
-            <div style={clockStyle} className={styles.clock}>
-                <div style={hourArrow} className={`${styles.arrow} ${styles.hourArrow}`}>
-                </div>
-                <div style={minuteArrow} className={`${styles.arrow} ${styles.minuteArrow}`}>
-                </div>
-                <div style={secondArrow} className={`${styles.arrow} ${styles.secondArrow}`}>
-                </div>
-            </div>
+        <div className={styles.clock}>
+            {view}
         </div>
     )
+})
 
-}

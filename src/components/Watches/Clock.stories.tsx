@@ -1,19 +1,23 @@
-import {Story} from '@storybook/react/types-6-0';
-import {useState} from 'react';
-import {action} from '@storybook/addon-actions';
-import {Clock} from './Clock';
-
+import React from 'react';
+import { Story, Meta } from '@storybook/react';
+import {Clock, ClockPropsType} from './Clock';
 
 export default {
     title: 'Kabzda/Clock',
-    component: Clock
-}
+    component: Clock,
+    argTypes: {
+        backgroundColor: { control: 'color' },
+    },
+} as Meta;
 
+const Template: Story<ClockPropsType> = (args) => <Clock {...args} />;
 
+export const DigitalClock = Template.bind({});
+DigitalClock.args = {
+    mode: 'digital'
+};
 
-const Template: Story<never> = (args) => <Clock/>
-
-export const clock = Template.bind({});
-
-
-
+export const AnalogClock = Template.bind({});
+AnalogClock.args = {
+    mode: 'analog'
+};

@@ -1,30 +1,37 @@
-.clock{
-    position: relative;
-    height: 200px;
-    width: 200px;
-    background-color: yellow;
+.clock {
+    width: 120px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.clock .digitalClock {
+    padding: 10px;
+}
+.clock .analogClock {
+    width: 100px;
+    height: 100px;
+    border: solid 1px #000;
     border-radius: 50%;
+    position: relative;
+    background: #fff;
 }
-
-.arrow{
+.clock .analogClock .dial {
     position: absolute;
-    background-color: black;
-    height: 100px;
-    width: 5px;
-    transform: translate(-50%, -50%);
+    left: 50%;
+    width: 50px;
+    height: 50px;
+    transform-origin: bottom left;
 }
-
-.secondArrow{
-    height: 100px;
-    width: 2px;
+.clock .analogClock .dial.seconds {
+    border-left: solid 1px green;
 }
-
-.minuteArrow{
-    height: 90px;
-    width: 3px;
+.clock .analogClock .dial.minutes {
+    border-left: solid 1px #cc0000;
 }
-
-.hourArrow{
-    height: 80px;
-    width: 5px;
+.clock .analogClock .dial.hours {
+    width: 35px;
+    height: 35px;
+    top: 15px;
+    border-left: solid 2px #000;
 }
